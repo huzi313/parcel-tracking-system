@@ -36,6 +36,9 @@ document.getElementById('searchButton').addEventListener('click', async () => {
     const query = document.getElementById('searchInput').value;
     const resultsDiv = document.getElementById('results');
 
+    // Clear previous results
+    resultsDiv.innerHTML = '';
+
     if (!query) {
         resultsDiv.innerHTML = "<p>Please enter a name or contact number.</p>";
         return;
@@ -47,7 +50,6 @@ document.getElementById('searchButton').addEventListener('click', async () => {
     const results = searchCustomer(parsedData, query);
 
     // Display results
-    resultsDiv.innerHTML = '';
     if (results.length > 0) {
         results.forEach(item => {
             const resultDiv = document.createElement('div');
@@ -58,6 +60,7 @@ document.getElementById('searchButton').addEventListener('click', async () => {
                 <strong>Address:</strong> ${item.Address}<br>
                 <strong>Contact Number:</strong> ${item.Contact}<br>
                 <strong>COD:</strong> ${item.COD}<br>
+                <strong>Status:</strong> ${item.Status}<br>
             `;
             resultsDiv.appendChild(resultDiv);
         });
